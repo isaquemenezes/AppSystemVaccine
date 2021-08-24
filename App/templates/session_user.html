@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{ url_for('static', filename='library/css/main.css') }}">
+    <title>App System Vaccine</title>
+</head>
+<body>
+
+
+    <div class="header">
+        <div class="container"> 
+            <div class="navbar">
+                
+                <div class="logo">
+                    <h2>< User Logado ></h2>
+                    
+                </div>
+
+                <nav>
+                    <ul id="menu-items">
+                        <li><a href="/home">Home</a></li>
+                        <li><a href="/register">Register</a></li>
+                        <li><a href="/login">Login</a></li>
+                    </ul>
+                </nav>
+
+             
+              
+
+            </div>
+
+            <div class="row"> 
+                <div class="col-2"> 
+                    <h1>System Vaccine <br> é um gerenciador online </h1>
+                    <p>Organize seu <b>cartão de vacine</b> em um único lugar. Recebar <b>notificações</b> quando estiver campanhas do governo, ou quando tiver que tomar vacina em data específica.
+                    <br>Perfeito para você ter o <b>controle das vacinas</b> dos seus: filhos, pais, avôs.E porque, não do seu, melhor amigo, seu cachorro.</p>
+                        <a href="/session" class="btn">Explorar &#8594;</a>
+                </div>
+
+                <div class="col-2">
+                   <img src=" {{ url_for('static', filename='library/images/banner_white.jpg') }}" alt="">
+                </div>
+
+            </div>
+
+        </div>
+        
+    </div>
+
+    <!-- Feature Products -->
+    <div class="small-container">
+        <h2 class="title">Menu Interno (< User Logado >)</h2>
+        
+        <div class="row">    
+            <div class="col-4">
+
+            <h3>Receber notificações</h3>
+
+                <img style="width:238px; height:130px" src="{{ url_for ('static', filename='library/images/notificacao.jpg')}}" alt="">
+             
+                  <a href="/notification" class="btn">Notificar-me &#8594;</a>
+            </div>
+
+            <div class="col-4">
+
+                <h3>Consulte suas vacinas</h3>
+
+                <img src="{{ url_for ('static', filename='library/images/todasvaccine.jpg') }}" alt="">
+                
+               
+                  <a href="/show" class="btn">Histórico &#8594;</a>
+            </div>
+
+            <div class="col-4"> 
+
+                <h3>Cadastrar vacina</h3>
+
+                <img style="width:238px; height:130px" src="{{ url_for ('static', filename='library/images/addvaccine.png') }}" alt="">
+               
+               
+                  <a href="/register-vaccine" class="btn">Register &#8594;</a>
+            </div>
+
+          
+
+        </div>
+    </div>    
+
+    <!-- Banner -->
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                
+                <div class="col-2">
+                    <img src="{{url_for('static', filename='library/images/vaccine.jpg') }}" alt="" class="offer-img">
+                </div>
+
+                <div class="col-2">
+                    <p>Campanha em Destaque </p>
+                    <h1>Vacina contra Convid-19</h1>
+                    <small>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet laudantium in, eos numquam itaque velit ducimus. Vel quam, dolores repellat eveniet nam laudantium rerum aut natus, quae suscipit alias aperiam.
+                    </small>
+                    <a href="" class="btn">+ Info &#8594;</a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- brands -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/biontech.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/oxford.png')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/janssen.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/gama.jpg')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/sinovac.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+   
+
+   
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Faça Download do App</h3>
+                    <p>Disponível para iphone e Android</p>
+                    
+                    <div class="app-logo">
+                        <img src="../../base_data/core_images/logos/google-play.png" alt="">
+                        <img src="../../base_data/core_images/logos/googleApple.jpg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="../../base_data/core_images/logos/images.jpg" alt="">
+                                 <p>Disponível para iphone e Android</p>
+                </div>
+
+                <div class="footer-col-3">
+                   <h3>Links ùteis</h3>
+                    <ul>
+                        <li>Privacidade</li>
+                        <li>Politica de dados</li>
+                        <li>Cookis</li>
+                        <li>Cupons de descontos</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>Redes sociais</h3>
+                     <ul>
+                         <li>Facebook</li>
+                         <li>Twitter</li>
+                         <li>Instagram</li>
+                         <li>LInkedin</li>
+                     </ul>
+                 </div>
+
+            </div>
+
+            <hr>
+            <p class="copyright">Copyright 2021 - Dev Isaque Menezes</p>
+        </div>
+    </div>
+
+   
+</body>
+</html>

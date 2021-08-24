@@ -1,0 +1,182 @@
+{% extends 'base.html' %}
+{% block title %}
+    Register Page Vaccine
+{% endblock %}
+
+{% block content %}
+
+    <style type="text/css"> 
+        .input-field {  border: none; width: 250px; height: 35px; border: 1px solid #dbdbdb;
+                        border-radius: 4px; padding-left: .7rem; outline: none;  }
+        button {
+            width: 90px;
+            height: 35px;
+            border-radius: .5rem;
+            cursor: pointer;
+            color: darkblue;
+            font-weight: 500;
+
+        }
+
+    </style>
+    <div style="margin-top:1rem">
+        <h1>Cadastre sua vacina</h1>
+        <form action="{{url_for('insert')}}" method="POST">
+
+            <label>Name:</label>
+            <input type="text" name="name"  class="input-field" required>
+
+            <label>Date:</label>
+            <input type="text" name="date" class="input-field" placeholder="(dd mm yyyy)" required >
+
+             <label>Lote:</label>
+            <input type="text" name="batch" class="input-field" required >
+
+            
+                <button type="submit"> Add Vaccine</button>
+         
+          
+        </form>  
+    </div>
+
+    <div class="container">
+        <form method="POST" class="form-register" style="color: aquamarine;">
+           
+        
+
+            <h1>Vaccine Catalog:</h1> <br>
+            
+
+            <table width="100%">
+            <thead>
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Typology</td>
+                    <td>Fabricante</td>
+                    <td>Locality</td>
+                    <td>Region</td>
+                    <td>Options</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in vaccine %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>
+                        <td>{{ item[4] }}</td>
+                        <td>{{ item[5] }}</td>
+                        <td>
+                            <button class="btn-info">+ Info </button>
+                            <button class="btn-success"><a href="/addvaccine/{{ item[0] }}">Add vaccine</a></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            
+            </tbody>
+        </table>
+
+        </form>
+    </div>
+
+    <!-- Banner -->
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                
+                <div class="col-2">
+                    <img src="{{url_for('static', filename='library/images/vaccine.jpg') }}" alt="" class="offer-img">
+                </div>
+
+                <div class="col-2">
+                    <p>Campanha em Destaque </p>
+                    <h1>Vacina contra Convid-19</h1>
+                    <small>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet laudantium in, eos numquam itaque velit ducimus. Vel quam, dolores repellat eveniet nam laudantium rerum aut natus, quae suscipit alias aperiam.
+                    </small>
+                    <a href="" class="btn">+ Info &#8594;</a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- brands -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/biontech.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/oxford.png')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/janssen.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/gama.jpg')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/sinovac.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Faça Download do App</h3>
+                    <p>Disponível para iphone e Android</p>
+                    
+                    <div class="app-logo">
+                        <img src="../../base_data/core_images/logos/google-play.png" alt="">
+                        <img src="../../base_data/core_images/logos/googleApple.jpg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="../../base_data/core_images/logos/images.jpg" alt="">
+                                 <p>Disponível para iphone e Android</p>
+                </div>
+
+                <div class="footer-col-3">
+                   <h3>Links ùteis</h3>
+                    <ul>
+                        <li>Privacidade</li>
+                        <li>Politica de dados</li>
+                        <li>Cookis</li>
+                        <li>Cupons de descontos</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>Redes sociais</h3>
+                     <ul>
+                         <li>Facebook</li>
+                         <li>Twitter</li>
+                         <li>Instagram</li>
+                         <li>LInkedin</li>
+                     </ul>
+                 </div>
+
+            </div>
+
+            <hr>
+            <p class="copyright">Copyright 2021 - Dev Isaque Menezes</p>
+        </div>
+    </div>
+
+
+{% endblock %}

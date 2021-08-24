@@ -1,0 +1,151 @@
+{% extends 'base.html' %}
+
+{% block title %} App {% endblock %}
+ 
+{% block content %}
+
+    <section style="margin-top: 1rem">
+        <h1 style="margin-bottom: 1rem; text-align: center;">Suas Vacinas Cadastradas</h1> 
+
+        <table width="100%">
+            <thead>
+                <tr>
+                   <td>Id</td>
+                    <td>Name</td>
+                    <td>Date</td>
+                    <td>Batch</td>
+                    <td>Options</td>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in query %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>                        
+                        <td>
+                            <style type="text/css">
+                                .btn-info {
+                                    width: 70px;
+                                    height: 32px;
+                                    border-radius: .3rem;
+                                    margin-left: .5rem;
+                                    cursor: pointer;
+                                    padding: 1px;
+                                    color: darkblue;
+                                    font-weight: 500;
+                                }
+                                .btn-info .del {
+                                    background: #ff523b;
+                                }
+                            </style>
+
+                            <button class="btn-info"><a href="/edit/{{item[0]}}">Edit</a></button>
+                            <button class="btn-info del"><a href="/delete/{{item[0]}}">Delete</a></button>
+                            <button class="btn-info"><a href="/info/{{ item[0] }}">+ More </a></button>
+                        </td>
+                    </tr>
+                {% endfor %}
+            
+            </tbody>
+        </table>
+    </section>
+
+    <!-- Banner -->
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                
+                <div class="col-2">
+                    <img src="{{url_for('static', filename='library/images/vaccine.jpg') }}" alt="" class="offer-img">
+                </div>
+
+                <div class="col-2">
+                    <p>Campanha em Destaque </p>
+                    <h1>Vacina contra Convid-19</h1>
+                    <small>
+                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet laudantium in, eos numquam itaque velit ducimus. Vel quam, dolores repellat eveniet nam laudantium rerum aut natus, quae suscipit alias aperiam.
+                    </small>
+                    <a href="" class="btn">+ Info &#8594;</a>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- brands -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/biontech.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/oxford.png')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/janssen.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/gama.jpg')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/sinovac.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Faça Download do App</h3>
+                    <p>Disponível para iphone e Android</p>
+                    
+                    <div class="app-logo">
+                        <img src="../../base_data/core_images/logos/google-play.png" alt="">
+                        <img src="../../base_data/core_images/logos/googleApple.jpg" alt="">
+                    </div>
+
+                </div>
+
+                <div class="footer-col-2">
+                    <img src="../../base_data/core_images/logos/images.jpg" alt="">
+                                 <p>Disponível para iphone e Android</p>
+                </div>
+
+                <div class="footer-col-3">
+                   <h3>Links ùteis</h3>
+                    <ul>
+                        <li>Privacidade</li>
+                        <li>Politica de dados</li>
+                        <li>Cookis</li>
+                        <li>Cupons de descontos</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>Redes sociais</h3>
+                     <ul>
+                         <li>Facebook</li>
+                         <li>Twitter</li>
+                         <li>Instagram</li>
+                         <li>LInkedin</li>
+                     </ul>
+                 </div>
+
+            </div>
+
+            <hr>
+            <p class="copyright">Copyright 2021 - Dev Isaque Menezes</p>
+        </div>
+    </div>
+{% endblock %}
