@@ -1,11 +1,17 @@
-{% extends 'base.html' %}
+{% extends  'base.html' %}
 
-{% block title %} App System Vaccine {% endblock %}
- 
-{% block content %}
-    <section style="margin-top: 1rem">
+{% block head %} {{ super() }}  {% endblock %}
 
-        <h1 style="margin-bottom: 1rem; text-align:center;">&check; Suas Notificado</h1>
+{% block title %} Session User {% endblock %}
+
+{% block logo %} <h3>< User Logado ></h3>{% endblock %}
+
+{% block header %} {{ super() }}  {% endblock %} 
+{% block nav %} {{ super() }} {% endblock %} 
+{% block container_row %}{% endblock %}
+
+{% block notification_page %}
+    <h1 style="margin-bottom: 1rem; text-align:center;">&check; Your Notification</h1>
         
         <table width="100%">
             <thead>
@@ -53,7 +59,7 @@
         <style type="text/css">input {width: 227px; height: 32px;} label {margin-left: 1rem;  } </style>
         
         <div class="content__form">
-            <form action="{{url_for('add_notification')}}" method="POST">
+            <form action="{{url_for('add_notification_method')}}" method="POST">
                 <label>Email:</label>
                 <input type="email" name="email" placeholder="E-mail" required>
 
@@ -67,101 +73,6 @@
                 
             </form>
         </div>
-        
-    </section>
 
-     <!-- Banner -->
-    <div class="offer">
-        <div class="small-container">
-            <div class="row">
-                
-                <div class="col-2">
-                    <img src="{{url_for('static', filename='library/images/vaccine.jpg') }}" alt="" class="offer-img">
-                </div>
-
-                <div class="col-2">
-                    <p>Campanha em Destaque </p>
-                    <h1>Vacina contra Convid-19</h1>
-                    <small>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet laudantium in, eos numquam itaque velit ducimus. Vel quam, dolores repellat eveniet nam laudantium rerum aut natus, quae suscipit alias aperiam.
-                    </small>
-                    <a href="#" class="btn">+ Info &#8594;</a>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- brands -->
-    <div class="brands">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/biontech.jpg') }}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/oxford.png')}}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/janssen.jpg') }}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/gama.jpg')}}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/sinovac.jpg')}}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Faça Download do App</h3>
-                    <p>Disponível para iphone e Android</p>
-                    
-                    <div class="app-logo">
-                       
-                    </div>
-
-                </div>
-
-                <div class="footer-col-2">
-                    <p>Disponível para iphone e Android</p>
-                </div>
-
-                <div class="footer-col-3">
-                   <h3>Links ùteis</h3>
-                    <ul>
-                        <li>Privacidade</li>
-                        <li>Politica de dados</li>
-                        <li>Cookis</li>
-                        <li>Cupons de descontos</li>
-                    </ul>
-                </div>
-
-                <div class="footer-col-4">
-                    <h3>Redes sociais</h3>
-                     <ul>
-                         <li>Facebook</li>
-                         <li>Twitter</li>
-                         <li>Instagram</li>
-                         <li>LInkedin</li>
-                     </ul>
-                 </div>
-
-            </div>
-
-            <hr>
-            <p class="copyright">&copy; Copyright 2021 - Dev Isaque Menezes</p>
-        </div>
-    </div>
 {% endblock %}
+

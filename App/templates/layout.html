@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+  <head>
+
+    {% block head %}
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>{% block title %}{% endblock %} - My Webpage</title>
+
+    {% endblock %}
+
+  </head>
+
+  <body>
+
+    <div id="content">
+      {% block content %}
+        <p>Testtando block content div Pai. E super</p>
+      {% endblock %} 
+     </div>
+
+    <section>
+      {% block section %}
+        <h2>Test block Pai dentro do block</h2>
+      {% endblock %}
+    </section>
+
+    <section>
+      {% block section_brands %}
+        <h2>Test block Pai block section_brands</h2>
+      {% endblock %}
+    </section>
+
+    <div id="footer">
+      {% block footer %}
+        &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
+      {% endblock %}
+    </div>
+
+  </body>
+</html>

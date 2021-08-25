@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}
-    Register Page
+    
 {% endblock %}
 
 {% block content %}
@@ -8,25 +8,12 @@
 
     <div class="container">
         <form method="POST" class="form-register" style="color: aquamarine;">
-            {{ form.hidden_tag() }}
+         
             <img src="" alt="Img">
 
             <h1>Registre-se : </h1> <br>
 
-            {{ form.username.label() }}
-            {{ form.username(class="form-control", placeholder="user name")}}<br>
-            
-            {{ form.email_address.label() }}
-            {{ form.username(class="form-control", placeholder="Email Address")}}<br>
-
-            {{ form.password1.label() }}
-            {{ form.password1(class="form-control", placeholder="Password") }}<br>
-
-            {{ form.password2.label() }}
-            {{ form.password2(class="form-control", placeholder="Confirm Password") }}<br>
-
-            {{ form.submit.label() }}
-            {{ form.submit(class="form-control-submit", placeholder="Create Account") }}
+           
 
         </form>
     </div>

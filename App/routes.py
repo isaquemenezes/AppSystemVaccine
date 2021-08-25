@@ -13,7 +13,7 @@ connection = pys.connect(db='health_card', user='root', password='')
 cursor = connection.cursor()
 
 #--------------------------------------
-#Page INICIAL
+#              Page INICIAL
 #--------------------------------------
 @app.route('/')
 @app.route('/home')
@@ -21,8 +21,8 @@ def home_page():
     return render_template('home.html')
 
 #----------------------------------------------------
-#Page das vacinas disponiveis e tbm para cadastrar 
-# a vacina para o user
+#   Page das vacinas disponiveis e tbm para cadastrar 
+#   a vacina para o user
 #----------------------------------------------------
 @app.route('/register-vaccine')
 def vaccine_register_page():
@@ -38,7 +38,7 @@ def vaccine_register_page():
 
 
 #-----------------------------------------
-#  cadastrar vacina no db vaccine_user 
+#    cadastrar vacina no db vaccine_user 
 #-----------------------------------------
 @app.route('/insert', methods= ['POST'])
 def insert():
@@ -57,7 +57,7 @@ def insert():
         return redirect (url_for('show_page'))
 
 #----------------------------------------
-# Exibir as vacinas do user
+#           Exibir as vacinas do user
 #----------------------------------------
 @app.route('/show')
 def show_page():
@@ -70,23 +70,24 @@ def show_page():
 
     return render_template('vaccine_show.html', query=query) 
 
-#------------------------------------------
-#Page Show notification
+#-----------------------------------------
+#           Page Show notification        
 #-----------------------------------------
 @app.route('/notification')
-def notification_page():
+def page_notification_method():
 
     sql_notif = "SELECT * FROM list_notification"
     cursor.execute(sql_notif)
+
     query_notif = cursor.fetchall()
 
     return render_template('register_notification.html', query=query_notif)
 
-#-------------------------------------------------------
-#Registrar um notificação
-#-------------------------------------------------------
+#------------------------------------------
+#           Registrar um notificação            
+#------------------------------------------
 @app.route('/register_notification', methods = ['POST'])
-def add_notification():
+def add_notification_method():
 
     if request.method == 'POST':
 
@@ -100,11 +101,11 @@ def add_notification():
         cursor.execute(__query, __date)
         connection.commit()
 
-        return redirect(url_for('add_notification_page'))
+        return redirect(url_for('page_notification_method'))
 
-#-------------------------------------------------------
-#Delete notification
-#-------------------------------------------------------
+#----------------------------------------------
+#           Delete notification
+#----------------------------------------------
 @app.route('/delnotfication/<int:id>')
 def __delnotification(id):
 
@@ -113,12 +114,12 @@ def __delnotification(id):
     cursor.execute(__del_query, id)
     connection.commit()
 
-    return redirect(url_for('notification_page'))
+    return redirect(url_for('page_notification_method'))
 
 
-#-----------------------------------------------------
-#Edit vaccine user
-#-----------------------------------------------------
+#----------------------------------------------
+#   Edit vaccine user
+#----------------------------------------------
 @app.route('/edit/<int:id>')
 def edit_view(id):
 

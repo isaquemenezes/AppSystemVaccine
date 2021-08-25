@@ -1,0 +1,154 @@
+{% extends 'base.html' %}
+
+{% block title %} App System Vaccine {% endblock %}
+ 
+   {% block content %}
+
+    <section style="margin-top: 1rem">
+
+        <h1 style="margin-bottom: 1rem; text-align:center;">&check; Your Notification</h1>
+        
+        <table width="100%">
+            <thead>
+                    <tr>
+                        <td>Id</td>
+                        <td>Name</td>
+                        <td>Date</td>
+                        <td>Batch</td>
+                        <td>Options</td>
+                    </tr>                
+            </thead>
+
+            <tbody>
+                {% for item in query %}
+                    <tr>
+                        <td>{{ item[0] }}</td>
+                        <td>{{ item[1] }}</td>
+                        <td>{{ item[2] }}</td>
+                        <td>{{ item[3] }}</td>                        
+                        <td>
+                            <style type="text/css">
+                                .btn-info { width: 70px; height: 32px; border-radius: .3rem;     
+                                            margin-left: .5rem; cursor: pointer; padding: 1px;
+                                            color: darkblue;      font-weight: 500;
+                                    }
+                                   
+                            </style>
+                            <button class="btn-info">+ Info </button>
+                            <button class="btn-info"><a href="/delnotfication/{{ item[0] }}">- Remove</a></button>
+                             
+                        </td>
+                    </tr>
+                {% endfor %}
+            
+            </tbody>
+            
+        </table>
+        
+    </section>
+
+    <section style="margin-top: 5rem;">
+
+        <h2 style="margin-bottom: 1.5rem; text-align:center;">Cadastre Para ser Notificado</h2>
+       
+        <style type="text/css">input {width: 227px; height: 32px;} label {margin-left: 1rem;  } </style>
+        
+        <div class="content__form">
+            <form action="{{url_for('add_notification')}}" method="POST">
+                <label>Email:</label>
+                <input type="email" name="email" placeholder="E-mail" required>
+
+                <label>Birth date:</label>
+                <input type="text" name="date" placeholder="(dd/mm/yyyy)" required >
+
+                <label>Phone:</label>
+                <input type="text" name="phone" placeholder="+55 (dd) 9 xxxx-xxxx">
+
+                <button class="btn-info" type="submit">Register</button>
+                
+            </form>
+        </div>
+        
+    </section>
+
+    <!-- Banner Campanha -->
+    {% block banner %}
+        {{ super()}}
+    {% endblock %}
+        
+
+    <!-- brands -->
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/biontech.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/oxford.png')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/janssen.jpg') }}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/gama.jpg')}}" alt="">
+                </div>
+
+                <div class="col-5">
+                    <img src="{{ url_for('static', filename='library/images/sinovac.jpg')}}" alt="">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- footer -->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Faça Download do App</h3>
+                    <p>Disponível para iphone e Android</p>
+                    
+                    <div class="app-logo">
+                       
+                    </div>
+
+                </div>
+
+                <div class="footer-col-2">
+                    <p>Disponível para iphone e Android</p>
+                </div>
+
+                <div class="footer-col-3">
+                   <h3>Links ùteis</h3>
+                    <ul>
+                        <li>Privacidade</li>
+                        <li>Politica de dados</li>
+                        <li>Cookis</li>
+                        <li>Cupons de descontos</li>
+                    </ul>
+                </div>
+
+                <div class="footer-col-4">
+                    <h3>Redes sociais</h3>
+                     <ul>
+                         <li>Facebook</li>
+                         <li>Twitter</li>
+                         <li>Instagram</li>
+                         <li>LInkedin</li>
+                     </ul>
+                 </div>
+
+            </div>
+
+            <hr>
+            <p class="copyright">&copy; Copyright 2021 - Dev Isaque Menezes</p>
+        </div>
+    </div>
+
+    {% endblock %}
+
+     
