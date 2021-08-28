@@ -243,7 +243,7 @@ def __action_login():
 
             
             if results:
-                return redirect(url_for('session_page()'))
+                return redirect(url_for('session_page'))
             else:
                 return redirect(url_for('login_page'))
 
