@@ -18,6 +18,7 @@ cursor = connection.cursor()
 @app.route('/')
 @app.route('/home')
 def home_page():
+
     return render_template('home.html')
 
 #----------------------------------------------------
@@ -42,14 +43,20 @@ def vaccine_register_page():
 #-----------------------------------------
 @app.route('/insert', methods= ['POST'])
 def insert():
+
     if request.method == 'POST':
 
         name = request.form['name']
         date = request.form['date']
         batch= request.form['batch']
 
-        cursor.execute("INSERT INTO vaccine_user(name, datte, batch) VALUES(%s, %s, %s)", (name, date, batch))
-    
+        __dataform = (name, date, batch)
+
+        # cursor.execute("INSERT INTO vaccine_user(name, datte, batch) VALUES(%s, %s, %s)", (name, date, batch))
+        __query = "INSERT INTO vaccine_user(name, datte, batch) VALUES(%s, %s, %s)"
+        
+        cursor.execute(__query, __dataform)
+
         #Commit in db
         connection.commit()
 
@@ -71,7 +78,7 @@ def show_page():
     return render_template('vaccine_show.html', query=query) 
 
 #-----------------------------------------
-#           Page Show notification        
+#  notification Exibi a cadastro de notificações       
 #-----------------------------------------
 @app.route('/notification')
 def page_notification_method():
@@ -124,7 +131,6 @@ def __delnotification(id):
 def edit_view(id):
 
     query = "SELECT * FROM vaccine_user WHERE id=%s"
-
     cursor.execute(query, id)
 
     row = cursor.fetchone()
@@ -134,7 +140,7 @@ def edit_view(id):
 
 
 #-----------------------------------------------
-#Update vaccine user
+#       Update vaccine user
 #-----------------------------------------------
 @app.route('/update', methods = ['GET', 'POST'])
 def __update():
@@ -148,18 +154,19 @@ def __update():
 
         # save edits
         sql_update = "UPDATE vaccine_user SET name=%s, datte=%s, batch=%s WHERE id=%s"
-        _data = (name, date, batch, _id) #Dados form name
+        _data = (name, date, batch, _id)  #Dados form name
 
         cursor.execute(sql_update, _data) #execute
-        connection.commit() #persistencia
+        connection.commit()               #persistencia
 
         return redirect(url_for('show_page'))
 
 #-------------------------------------------
-#delete vaccine user
+#       delete vaccine user
 #-------------------------------------------
 @app.route('/delete/<int:id>')
 def __delete(id):
+
     query_delete = "DELETE FROM vaccine_user WHERE id=%s"
     id_delete = id
 
@@ -169,15 +176,13 @@ def __delete(id):
     return redirect(url_for('show_page'))
 
 #-------------------------------------------
-#Adicionar vaccine EM CONSTRUÇÃO
+#       Adicionar vaccine EM CONSTRUÇÃO
 #-------------------------------------------
 @app.route('/addvaccine/<int:id>')
 def add_vaccine(id):
 
     return render_template('add_vaccine.html')
-
-
-
+    
 
 #----------------------------------------
 #    Information das vacinas disponíveis
@@ -187,21 +192,68 @@ def __info():
     return render_template('single.html')
 
 #----------------------------------------
-#Page register
+#       register - page account 
+#----------------------------------------
 @app.route('/register')
 def register_page():
-    return render_template('register.html')
+
+    return render_template('account.html')
+
+#-------- Action Register ---------------
+@app.route('/action_register', methods=['POST'])
+def __action_register():
+     if request.method == 'POST':
+
+        __name = request.form['name']
+        __email= request.form['email']
+        __password = request.form['password']
+
+        __dataform = (__name, __email, __password)
+
+        quey_user = "INSERT INTO user (name, email, password) VALUES(%s, %s, %s)"
+        cursor.execute(quey_user, __dataform) 
+
+        connection.commit() 
+
+        return redirect(url_for('register_page'))
+
 
 #----------------------------------------
-#Page login
+#       login - Page account
+#----------------------------------------
 @app.route('/login')
 def login_page():
-    return render_template('login.html')
+
+    return render_template('account.html')
+
+#------------ Action login --------------
+@app.route('/action_login', methods=['POST'])
+def __action_login():
+
+    if request.method == 'POST':
+
+            __email = request.form['email']
+            __password =  request.form['password']
+
+            __data_in= (__email, __password)
+
+            __query_user = "SELECT * FROM user WHERE email=%s AND password=%s"
+
+            results = cursor.execute(__query_user, __data_in)
+
+            
+            if results:
+                return redirect(url_for('session_page()'))
+            else:
+                return redirect(url_for('login_page'))
+
 
 #----------------------------------------
-#Session user
-@app.route('/session', methods=['GET', 'POST'] )
+#       Session user
+#----------------------------------------
+@app.route('/session')
 def session_page():
+
     return render_template('session_user.html') 
 
 #----------------------------------------------------
