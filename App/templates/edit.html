@@ -2,22 +2,29 @@
 
 {% block head %} {{ super() }}  {% endblock %}
 
-{% block title %} Edit Vaccine {% endblock %}
+{% block title %} Session User {% endblock %}
 
 {% block logo %} <h3>< User Logado ></h3>{% endblock %}
 
+{% block header %} {{ super() }}  {% endblock %} 
 
-    <style type="text/css"> 
-        .input-field {  border: none; width: 250px; height: 35px; border: 1px solid #dbdbdb;
-                        border-radius: 4px; padding-left: .7rem; outline: none;  }
-        button { width: 90px; height: 35px; border-radius: .5rem; cursor: pointer; color: darkblue;
-            font-weight: 500; }
+{% block nav %} {{ super() }} {% endblock %} 
 
-    </style>
+{% block container_row %}{% endblock %}
 
-    <div style="margin-top:1rem">
+  
+    
+    {% block edit %}
 
         <h1>Editar Vacina</h1>
+
+        <style type="text/css"> 
+        .input-field {  border: none; width: 250px; height: 35px; border: 1px solid #dbdbdb;                border-radius: 4px; padding-left: .7rem; outline: none;  }
+        button { width: 90px; height: 35px; border-radius: .5rem; cursor: pointer; color: darkblue;
+                 font-weight: 500; }
+
+        </style>
+
 
         <form action="{{url_for('__update')}}" method="POST">
 
@@ -35,110 +42,7 @@
         
         </form>  
 
-    </div>
+    {% endblock %}
 
+    
 
-    <!-- Banner -->
-    <div class="offer">
-        <div class="small-container">
-            <div class="row">
-                
-                <div class="col-2">
-                    <img src="{{url_for('static', filename='library/images/vaccine.jpg') }}" alt="" class="offer-img">
-                </div>
-
-                <div class="col-2">
-                    <p>Campanha em Destaque </p>
-                    <h1>Vacina contra Convid-19</h1>
-                    <small>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Eveniet laudantium in, eos numquam itaque velit ducimus. Vel quam, dolores repellat eveniet nam laudantium rerum aut natus, quae suscipit alias aperiam.
-                    </small>
-                    <a href="" class="btn">+ Info &#8594;</a>
-
-                </div>
-
-            </div>
-        </div>
-    </div>
-
-    <!-- brands -->
-    <div class="brands">
-        <div class="small-container">
-            <div class="row">
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/biontech.jpg') }}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/oxford.png')}}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/janssen.jpg') }}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/gama.jpg')}}" alt="">
-                </div>
-
-                <div class="col-5">
-                    <img src="{{ url_for('static', filename='library/images/sinovac.jpg')}}" alt="">
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- footer -->
-    <div class="footer">
-        <div class="container">
-            <div class="row">
-                <div class="footer-col-1">
-                    <h3>Faça Download do App</h3>
-                    <p>Disponível para iphone e Android</p>
-                    
-                    <div class="app-logo">
-                
-                    </div>
-
-                </div>
-
-                <div class="footer-col-2">
-                  
-                                 <p>Disponível para iphone e Android</p>
-                </div>
-
-                <div class="footer-col-3">
-                   <h3>Links ùteis</h3>
-                    <ul>
-                        <li>Privacidade</li>
-                        <li>Politica de dados</li>
-                        <li>Cookis</li>
-                        <li>Cupons de descontos</li>
-                    </ul>
-                </div>
-
-                <div class="footer-col-4">
-                    <h3>Redes sociais</h3>
-                     <ul>
-                         <li>Facebook</li>
-                         <li>Twitter</li>
-                         <li>Instagram</li>
-                         <li>LInkedin</li>
-                     </ul>
-                 </div>
-
-            </div>
-
-            <hr>
-            <p class="copyright">&copy; Copyright 2021 - Dev Isaque Menezes</p>
-        </div>
-    </div>
-
-
-
-
-
-
-
-</body>
-{% endblock %}

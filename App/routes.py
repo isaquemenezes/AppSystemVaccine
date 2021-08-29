@@ -236,7 +236,7 @@ def __action_register():
         # user_data = (form.username.data, form.email.data, form.password.data)
         user_data = (name_form, email_form, password_hash)
 
-        _user = "INSERT INTO user(email, password) VALUES(%s, %s)"
+        _user = "INSERT INTO user(name, email, password) VALUES(%s, %s, %s)"
 
         cursor.execute(_user, user_data)
 
@@ -244,7 +244,7 @@ def __action_register():
 
         flash('Thanks for registering')
 
-        return redirect(url_for('session_page'))
+        return redirect(url_for('__account'))
 
     return render_template('account.html')
 
@@ -271,12 +271,12 @@ def __action_login():
 
         if results is None:
             error = 'Incorrect username.'
-        elif not check_password_hash(user[3], password):
+        elif not check_password_hash(results[3], password):
             error = 'Incorrect password.'
 
         if error is None:
 
-            return redirect(url_for('session_method'))
+            return redirect(url_for('session_page'))
 
         flash(error)
     

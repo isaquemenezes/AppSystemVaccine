@@ -38,6 +38,7 @@
                     {% block nav %}
                     <ul id="menu-items">
                         <li><a href="/home">Home</a></li>
+                        <li><a href="/session">Session</a></li>
                         <li><a href="/register">Register</a></li>
                         <li><a href="/account">Login</a></li>
                     </ul>
@@ -68,7 +69,7 @@
 
         </div>
         {% endblock %}
-         
+
       </div>
 
     <!-- Menu Interno (Two) Apenas Para page session_user.html -->
@@ -106,6 +107,15 @@
       {% endblock %}
 
     </section> 
+
+    <!-- Jinja modelo para page edit.html -->
+    <section style="margin-top:1rem">
+
+      {% block edit %}
+
+      {% endblock %}
+
+    </section>  
     
     <!-- Campanhas banner (Three)  -->
     <div class="offer">
