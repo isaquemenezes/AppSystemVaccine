@@ -1,5 +1,6 @@
 from App import app
 from flask import render_template, redirect, request, url_for
+from werkzeug.security import check_password_hash, generate_password_hash
 import pymysql as pys
 
 
@@ -205,9 +206,11 @@ def __action_register():
         __email= request.form['email']
         __password = request.form['password']
 
-        __dataform = (__name, __email, __password)
+        password_hash = generate_password_hash(__password) #preciso testar
 
-        quey_user = "INSERT INTO user (name, email, password) VALUES(%s, %s, %s)"
+        __dataform = (__name, __email, password_hash)
+
+        quey_user = "INSERT INTO user(name, email, password) VALUES(%s, %s, %s)"
         cursor.execute(quey_user, __dataform) 
 
         connection.commit() 
@@ -229,17 +232,17 @@ def __action_login():
 
     if request.method == 'POST':
 
-            __email = request.form['email']
-            __password =  request.form['password']
+            email_form = request.form['email']
+            password_form =  request.form['password']
 
-            __data_in= (__email, __password)
+            __data_in= (email_form, password_form)
 
             __query_user = "SELECT * FROM user WHERE email=%s AND password=%s"
 
             results = cursor.execute(__query_user, __data_in)
 
-            
-            if results:
+            if check_password_hash(password_form, results[3]):  #Preciso testar
+            # if results:
                 return redirect(url_for('session_page'))
             else:
                 return redirect(url_for('login_page'))
