@@ -2,9 +2,6 @@ from App import app
 from flask import render_template, redirect, request, url_for
 import pymysql as pys
 
-#-----DataScience--------
-import requests
-import pandas as ps
 
 #Estabelecendo um connection 
 connection = pys.connect(db='health_card', user='root', password='')
@@ -256,18 +253,3 @@ def session_page():
 
     return render_template('session_user.html') 
 
-#----------------------------------------------------
-#------------- Testes analise de dados --------------
-#----------------------------------------------------
-
-#Rotas
-@app.route('/data_science')
-def __data_science():
-    csv_file = 'Acara_covid-19.csv'
-    file = requests.get(csv_file)
-    
-    data_set = ps.read_csv(file)
-    _data = {}  # Criando um dic vazio
-    _data['dados'] = data_set.head().to_html() #Exportando pra html
-
-    return render_template('dataScience.htm', dados=_data)
