@@ -144,9 +144,7 @@ def edit_view(id):
         return render_template('edit.html', row=row)
 
 
-#-----------------------------------------------
-#       Update vaccine user
-#-----------------------------------------------
+#----------------- UPDATE ACTION --------------- 
 @app.route('/update', methods = ['GET', 'POST'])
 def __update():
 
@@ -154,7 +152,7 @@ def __update():
 
         name = request.form['name']  #name="name"  <- value
         date = request.form['date']  #name="date"  <- value
-        batch=request.form['batch']  #name="batch" <- value
+        batch= request.form['batch']  #name="batch" <- value
         _id  = request.form['id']    #name="id"    <- value
 
         # save edits
@@ -181,20 +179,44 @@ def __delete(id):
     return redirect(url_for('show_page'))
 
 #-------------------------------------------
-#       Adicionar vaccine EM CONSTRUÇÃO
+#       Add vaccine 2 option
 #-------------------------------------------
-@app.route('/addvaccine/<int:id>')
+@app.route('/add_vaccine/<int:id>')
 def add_vaccine(id):
+
+    __id = id
+    __query_select = 'SELECT * FROM vaccine_card WHERE id=%s'
+
+    cursor.execute( __query_select, __id)
+
+    results = cursor.fetchone()
+
+    if results:
+        return render_template('add_vaccine.html', rows=results)
+
+#---------------- ACTION  ADD VACCINE ------------
+@app.route('/addvaccine', methods=['GET', 'POST'])
+def __add_vaccine():
+
+    if request.method == 'POST':
+
+        __name_form = request.form.get('name')
+        __date_form = request.form.get('date')
+        __batch_form= request.form.get('batch')
+
+        date_form =(__name_form, __date_form, __batch_form)
+
+        __query_insert = 'INSERT INTO vaccine_user(name, datte, batch) VALUES(%s, %s, %s)'
+
+        cursor.execute(__query_insert, date_form)
+
+        connection.commit()
+
+        return redirect( url_for('show_page') )
 
     return render_template('add_vaccine.html')
     
 
-#----------------------------------------
-#    Information das vacinas disponíveis
-#---------------------------------------
-@app.route('/info')
-def __info():
-    return render_template('single.html')
 
 #----------------------------------------
 #       page account 
@@ -204,26 +226,9 @@ def __account():
 
     return render_template('account.html')
 
-#-------- Action Register ---------------
+#-------------- REGISTER -----------------------
 @app.route('/register', methods=['GET', 'POST'])
 def __action_register():
-
-     # if request.method == 'POST':
-
-     #    __name = request.form['name']
-     #    __email= request.form['email']
-     #    __password = request.form['password']
-
-     #    password_hash = generate_password_hash(__password) #preciso testar
-
-     #    __dataform = (__name, __email, password_hash)
-
-     #    quey_user = "INSERT INTO user(name, email, password) VALUES(%s, %s, %s)"
-     #    cursor.execute(quey_user, __dataform) 
-
-     #    connection.commit() 
-
-     # return redirect(url_for('register_page'))
 
     if request.method == 'POST':
 
@@ -249,10 +254,7 @@ def __action_register():
     return render_template('account.html')
 
 
-
-#----------------------------------------
-#       login
-#----------------------------------------
+#------------------- LOGIN ---------------------
 @app.route('/login', methods = ['GET', 'POST'])
 def __action_login():
 
@@ -281,28 +283,6 @@ def __action_login():
         flash(error)
     
     return redirect(url_for('error_method'))
-
-
-#------------ Action login --------------
-# @app.route('/action_login', methods=['POST'])
-# def login_page():
-
-#     if request.method == 'POST':
-
-#             email_form = request.form['email']
-#             password_form =  request.form['password']
-
-#             __data_in= (email_form, password_form)
-
-#             __query_user = "SELECT * FROM user WHERE email=%s AND password=%s"
-
-#             results = cursor.execute(__query_user, __data_in)
-
-#             if check_password_hash(password_form, results[3]):  #Preciso testar
-#             # if results:
-#                 return redirect(url_for('session_page'))
-#             else:
-#                 return redirect(url_for('login_page'))
 
 
 #----------------------------------------

@@ -13,37 +13,39 @@
 {% block container_row %}{% endblock %}
 
 {% block notification_page %}
-    <h1 style="margin-bottom: 1rem; text-align:center;">&check; Your Notification</h1>
+    <h1 style="margin-bottom: 1rem; text-align:center;">&check; Your Notifications</h1>
         
         <table width="100%">
             <thead>
-                    <tr>
-                        <td>Id</td>
-                        <td>Name</td>
-                        <td>Date</td>
-                        <td>Batch</td>
-                        <td>Options</td>
-                    </tr>                
+                <tr>
+                    <td>Id</td>
+                    <td>Name</td>
+                    <td>Date</td>
+                    <td>Batch</td>
+                    <td>Options</td>
+                </tr>                
             </thead>
 
             <tbody>
+
                 {% for item in query %}
-                    <tr>
-                        <td>{{ item[0] }}</td>
-                        <td>{{ item[1] }}</td>
-                        <td>{{ item[2] }}</td>
-                        <td>{{ item[3] }}</td>                        
-                        <td>
-                            <style type="text/css">
-                                .btn-info { width: 70px; height: 32px; border-radius: .3rem;margin-left: .5rem; cursor: pointer; padding: 1px; color: darkblue; font-weight: 500;
+                <tr>
+                    <td>{{ item[0] }}</td>
+                    <td>{{ item[1] }}</td>
+                    <td>{{ item[2] }}</td>
+                    <td>{{ item[3] }}</td>                        
+                    <td>
+                        <style type="text/css">
+                            .btn-info { width: 70px; height: 32px; border-radius: .3rem;margin-left: .5rem; cursor: pointer; padding: 1px; color: darkblue; font-weight: 500;
                                     }
+                             .btn-info.del { background: #ff523b;    }
                                    
                             </style>
-                            <button class="btn-info">+ Info </button>
-                            <button class="btn-info"><a href="/delnotfication/{{ item[0] }}">- Remove</a></button>
+                        <button class="btn-info">+ Info </button>
+                        <button class="btn-info del"><a href="/delnotfication/{{ item[0] }}">- Remove</a></button>
                              
-                        </td>
-                    </tr>
+                    </td>
+                </tr>
                 {% endfor %}
             
             </tbody>

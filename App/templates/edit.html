@@ -12,7 +12,6 @@
 
 {% block container_row %}{% endblock %}
 
-  
     
     {% block edit %}
 
@@ -26,17 +25,17 @@
         </style>
 
 
-        <form action="{{url_for('__update')}}" method="POST">
+        <form action="{{ url_for('__update') }}" method="POST">
 
             <label>Name:</label>
-            <input type="hidden" name="id" value="{{row[0]}}">
-            <input type="text" name="name" value="{{row[1]}}" class="input-field" required>
+            <input type="hidden" name="id" value="{{ row[0] }}">
+            <input type="text" name="name" value="{{ row[1] }}" class="input-field" required>
 
             <label>Date:</label>
-            <input type="text" name="date" value="{{row[2]}}" class="input-field" placeholder="(dd mm yyyy)" required >
+            <input type="text" name="date" value="{{ row[2] }}" class="input-field" placeholder="(dd mm yyyy)" required >
 
              <label>Lote:</label>
-            <input type="text" name="batch" value="{{row[3]}}" class="input-field" required >
+            <input type="text" name="batch" value="{{ row[3] }}" class="input-field" required >
 
             <button type="submit">Enviar</button>
         
