@@ -1,5 +1,5 @@
 <!doctype html>
-<html>
+<html lang="pt-br">
   <head>
 
     {% block head %}
@@ -38,7 +38,6 @@
                     {% block nav %}
                     <ul id="menu-items">
                         <li><a href="/home">Home</a></li>
-                        <li><a href="/session">Session</a></li>
                         <li><a href="/register">Register</a></li>
                         <li><a href="/account">Login</a></li>
                     </ul>
@@ -68,7 +67,8 @@
              {% endblock %}  
 
         </div>
-         {% endblock %} 
+        {% endblock %}
+         
       </div>
 
     <!-- Menu Interno (Two) Apenas Para page session_user.html -->
@@ -90,7 +90,7 @@
     </section> 
 
     <!-- Jinja modelo para page register_vaccine.html -->
-    <div style="margin-top:1rem">
+    <section style="margin-top:1rem">
 
       {% block register_vaccine %}
 
@@ -163,12 +163,14 @@
             </div>
         </div>
         {% endblock %}
+
     </div>
 
     
 
      <!-- footer ( Five )-->
     <div class="footer">
+
         {% block footer %}
         <div class="container">
             <div class="row">
@@ -212,6 +214,7 @@
             <p class="copyright">&copy;Copyright 2021 - Dev Isaque Menezes</p>
         </div>
         {% endblock %}
+
     </div>
     
 

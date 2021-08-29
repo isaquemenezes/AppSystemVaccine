@@ -13,31 +13,30 @@
         <div class="row">    
             <div class="col-4">
 
-            <h3>Receber notificações</h3>
+                <h3>Receber notificações</h3>
 
-                <img style="width:238px; height:130px" src="{{ url_for ('static', filename='library/images/notificacao.jpg')}}" alt="">
-             
-                  <a href="/notification" class="btn">Notificar-me &#8594;</a>
-            </div>
+                    <img style="width:238px; height:130px" src="{{ url_for ('static', filename='library/images/notificacao.jpg')}}" alt="">
+                 
+                      <a href="/notification" class="btn">Notificar-me &#8594;</a>
+                </div>
 
-            <div class="col-4">
+                <div class="col-4">
 
-                <h3>Consulte suas vacinas</h3>
+                    <h3>Consulte suas vacinas</h3>
 
-                <img src="{{ url_for ('static', filename='library/images/todasvaccine.jpg') }}" alt="">
-                
-               
-                  <a href="/show" class="btn">Histórico &#8594;</a>
-            </div>
+                    <img src="{{ url_for ('static', filename='library/images/todasvaccine.jpg') }}" alt="">
+                    
+                      <a href="/show" class="btn">Histórico &#8594;</a>
+                </div>
 
-            <div class="col-4"> 
+                <div class="col-4"> 
 
-                <h3>Cadastrar vacina</h3>
+                    <h3>Cadastrar vacina</h3>
 
-                <img style="width:238px; height:130px" src="{{ url_for ('static', filename='library/images/addvaccine.png') }}" alt="">
-               
-               
-                  <a href="/register-vaccine" class="btn">Register &#8594;</a>
+                    <img style="width:238px; height:130px" src="{{ url_for ('static', filename='library/images/addvaccine.png') }}" alt="">
+                   
+                   <a href="/register-vaccine" class="btn">Register &#8594;</a>
+                </div>
             </div>
         </div>
     {% endblock %}  

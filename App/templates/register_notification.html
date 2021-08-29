@@ -7,7 +7,9 @@
 {% block logo %} <h3>< User Logado ></h3>{% endblock %}
 
 {% block header %} {{ super() }}  {% endblock %} 
+
 {% block nav %} {{ super() }} {% endblock %} 
+
 {% block container_row %}{% endblock %}
 
 {% block notification_page %}
@@ -33,9 +35,7 @@
                         <td>{{ item[3] }}</td>                        
                         <td>
                             <style type="text/css">
-                                .btn-info { width: 70px; height: 32px; border-radius: .3rem;     
-                                            margin-left: .5rem; cursor: pointer; padding: 1px;
-                                            color: darkblue;      font-weight: 500;
+                                .btn-info { width: 70px; height: 32px; border-radius: .3rem;margin-left: .5rem; cursor: pointer; padding: 1px; color: darkblue; font-weight: 500;
                                     }
                                    
                             </style>
@@ -59,7 +59,9 @@
         <style type="text/css">input {width: 227px; height: 32px;} label {margin-left: 1rem;  } </style>
         
         <div class="content__form">
-            <form action="{{url_for('add_notification_method')}}" method="POST">
+
+            <form action="{{ url_for('add_notification_method') }}" method="POST">
+               
                 <label>Email:</label>
                 <input type="email" name="email" placeholder="E-mail" required>
 
