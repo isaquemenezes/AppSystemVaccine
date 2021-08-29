@@ -1,5 +1,5 @@
 from App import app
-from flask import render_template, redirect, request, url_for
+from flask import render_template, redirect, request, url_for, flash
 from werkzeug.security import check_password_hash, generate_password_hash
 import pymysql as pys
 
@@ -18,6 +18,14 @@ cursor = connection.cursor()
 def home_page():
 
     return render_template('home.html')
+
+#--------------------------------------
+#               Page ERROR
+#--------------------------------------
+@app.route('/error')
+def error_method():
+
+    return render_template('error_page.html')
 
 #----------------------------------------------------
 #   Page das vacinas disponiveis e tbm para cadastrar 
@@ -50,7 +58,6 @@ def insert():
 
         __dataform = (name, date, batch)
 
-        # cursor.execute("INSERT INTO vaccine_user(name, datte, batch) VALUES(%s, %s, %s)", (name, date, batch))
         __query = "INSERT INTO vaccine_user(name, datte, batch) VALUES(%s, %s, %s)"
         
         cursor.execute(__query, __dataform)
@@ -190,62 +197,112 @@ def __info():
     return render_template('single.html')
 
 #----------------------------------------
-#       register - page account 
+#       page account 
 #----------------------------------------
-@app.route('/register')
-def register_page():
+@app.route('/account')
+def __account():
 
     return render_template('account.html')
 
 #-------- Action Register ---------------
-@app.route('/action_register', methods=['POST'])
+@app.route('/register', methods=['GET', 'POST'])
 def __action_register():
-     if request.method == 'POST':
 
-        __name = request.form['name']
-        __email= request.form['email']
-        __password = request.form['password']
+     # if request.method == 'POST':
 
-        password_hash = generate_password_hash(__password) #preciso testar
+     #    __name = request.form['name']
+     #    __email= request.form['email']
+     #    __password = request.form['password']
 
-        __dataform = (__name, __email, password_hash)
+     #    password_hash = generate_password_hash(__password) #preciso testar
 
-        quey_user = "INSERT INTO user(name, email, password) VALUES(%s, %s, %s)"
-        cursor.execute(quey_user, __dataform) 
+     #    __dataform = (__name, __email, password_hash)
 
-        connection.commit() 
+     #    quey_user = "INSERT INTO user(name, email, password) VALUES(%s, %s, %s)"
+     #    cursor.execute(quey_user, __dataform) 
 
-        return redirect(url_for('register_page'))
+     #    connection.commit() 
 
+     # return redirect(url_for('register_page'))
 
-#----------------------------------------
-#       login - Page account
-#----------------------------------------
-@app.route('/login')
-def login_page():
+    if request.method == 'POST':
+
+        name_form = request.form.get('name')
+        email_form = request.form.get('email')
+        password_form = request.form.get('password')
+
+        password_hash = generate_password_hash(password_form)
+
+        # user_data = (form.username.data, form.email.data, form.password.data)
+        user_data = (name_form, email_form, password_hash)
+
+        _user = "INSERT INTO user(email, password) VALUES(%s, %s)"
+
+        cursor.execute(_user, user_data)
+
+        connection.commit()
+
+        flash('Thanks for registering')
+
+        return redirect(url_for('session_page'))
 
     return render_template('account.html')
 
-#------------ Action login --------------
-@app.route('/action_login', methods=['POST'])
+
+
+#----------------------------------------
+#       login
+#----------------------------------------
+@app.route('/login', methods = ['GET', 'POST'])
 def __action_login():
 
     if request.method == 'POST':
 
-            email_form = request.form['email']
-            password_form =  request.form['password']
+        email = request.form['email']
+        password = request.form['password']
 
-            __data_in= (email_form, password_form)
+        error = None
 
-            __query_user = "SELECT * FROM user WHERE email=%s AND password=%s"
+        query_user = 'SELECT * FROM user WHERE email=%s'
 
-            results = cursor.execute(__query_user, __data_in)
+        cursor.execute(query_user, (email))
 
-            if check_password_hash(password_form, results[3]):  #Preciso testar
-            # if results:
-                return redirect(url_for('session_page'))
-            else:
-                return redirect(url_for('login_page'))
+        results =  cursor.fetchone()
+
+        if results is None:
+            error = 'Incorrect username.'
+        elif not check_password_hash(user[3], password):
+            error = 'Incorrect password.'
+
+        if error is None:
+
+            return redirect(url_for('session_method'))
+
+        flash(error)
+    
+    return redirect(url_for('error_method'))
+
+
+#------------ Action login --------------
+# @app.route('/action_login', methods=['POST'])
+# def login_page():
+
+#     if request.method == 'POST':
+
+#             email_form = request.form['email']
+#             password_form =  request.form['password']
+
+#             __data_in= (email_form, password_form)
+
+#             __query_user = "SELECT * FROM user WHERE email=%s AND password=%s"
+
+#             results = cursor.execute(__query_user, __data_in)
+
+#             if check_password_hash(password_form, results[3]):  #Preciso testar
+#             # if results:
+#                 return redirect(url_for('session_page'))
+#             else:
+#                 return redirect(url_for('login_page'))
 
 
 #----------------------------------------
