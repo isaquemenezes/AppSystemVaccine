@@ -179,7 +179,7 @@ def __delete(id):
     return redirect(url_for('show_page'))
 
 #-------------------------------------------
-#       Add vaccine 2 option
+#       Add vaccine 
 #-------------------------------------------
 @app.route('/add_vaccine/<int:id>')
 def add_vaccine(id):
